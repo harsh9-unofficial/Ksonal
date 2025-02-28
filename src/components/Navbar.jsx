@@ -18,6 +18,11 @@ const Navbar = () => {
   useEffect(() => {
     // Close the dropdown if the route changes
     setIsDropdownOpen(false);
+
+    // Reset mobile menu when route changes on small devices (below 768px)
+    if (window.innerWidth <= 768) {
+      setIsOpen(false);
+    }
   }, [location]); // Run this effect when the location (URL) changes
 
   return (

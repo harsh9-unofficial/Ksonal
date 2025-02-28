@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 const ProductGrid = () => {
   const allProducts = [
     {
@@ -38,6 +39,15 @@ const ProductGrid = () => {
     },
   ];
 
+  const navigate = useNavigate(); // Initialize navigate
+
+  const handleCategoryClick = (product) => {
+    // You can adjust the category-based navigation logic here
+    if (product === "Fertilizers") {
+      navigate("/singleproduct"); // Redirect to /singleproduct when clicked
+    }
+    // Add more category-based routes if needed
+  };
   return (
     <section className="py-4 px-3 w-[100%] lg:w-[97%] xl:w-[70%] mx-auto">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-4">
@@ -59,6 +69,7 @@ const ProductGrid = () => {
               className={`mt-4 px-4 py-2 flex items-center cursor-pointer ${
                 product.dark ? "bg-black text-white" : "bg-green-600 text-white"
               }`}
+              onClick={() => handleCategoryClick(product.title)}
             >
               READ MORE
             </button>
