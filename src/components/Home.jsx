@@ -1,9 +1,7 @@
-import React from "react";
-
 import HeroImg from "./HeroImg";
-import ServicesGrid from "./ServiceGrid";
+import ServicesGrid from "./ServicesGrid";
 import FeaturesSection from "./FeaturesSection";
-import QuoteForm from "./QuoteForm";
+// import QuoteForm from "./QuoteForm";
 import TestimonialSection from "./TestimonialSection";
 
 const Home = () => {
@@ -12,7 +10,7 @@ const Home = () => {
       <HeroImg srcImg={"/images/Group4.png"} />
       <ServicesGrid />
       <FeaturesSection />
-      <QuoteForm />
+      {/* <QuoteForm /> */}
       <TestimonialSection />
     </>
   );

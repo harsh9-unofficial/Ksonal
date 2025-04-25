@@ -4,7 +4,7 @@ import ProductGrid from "./ProductGrid";
 const Products = () => {
   return (
     <>
-      <HeroImg srcImg="/images/Group22.png" />
+      <HeroImg srcImg="/images/Rectangle 21.png" text="PRODUCTS"/>
       <ProductGrid />
     </>
   );

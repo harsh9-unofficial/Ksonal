@@ -38,7 +38,7 @@ const QuoteForm = () => {
           <input
             type="text"
             placeholder="Name"
-            className="p-4 py-6 text-xl border border-gray-600 placeholder:text-black text-black focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="p-4 py-5 text-xl border border-gray-600 placeholder:text-black text-black focus:outline-none focus:ring-2 focus:ring-green-500"
           />
           <input
             type="email"
@@ -65,7 +65,7 @@ const QuoteForm = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="py-5 text-xl md:text-2xl bg-green-600 hover:bg-green-700 text-white px-6 flex items-center justify-center gap-4 sm:col-span-2 shadow-[10px_10px_rgb(0,0,0)]"
+            className="py-5 text-xl md:text-2xl bg-green-600 cursor-pointer text-white px-6 flex items-center justify-center gap-4 sm:col-span-2 shadow-[10px_10px_rgb(0,0,0)]"
           >
             SUBMIT <FaArrowRight />
           </button>

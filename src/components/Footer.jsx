@@ -6,6 +6,7 @@ import {
   FaPhoneAlt,
   FaEnvelope,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -40,19 +41,25 @@ export default function Footer() {
           <h3 className="text-lg font-bold mt-4 md:mt-0 mb-4">QUICK LINKS</h3>
           <ul className="space-y-3 text-gray-300">
             <li>
-              <a href="#" className="hover:text-green-500">
-                HOME
-              </a>
+              <Link to="/">
+                <button className="hover:text-green-500 cursor-pointer">
+                  HOME
+                </button>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-green-500">
-                ABOUT US
-              </a>
+              <Link to="/about">
+                <button className="hover:text-green-500 cursor-pointer">
+                  ABOUT US
+                </button>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-green-500">
-                CONTACT US
-              </a>
+              <Link to="/contact">
+                <button className="hover:text-green-500 cursor-pointer">
+                  CONTACT US
+                </button>
+              </Link>
             </li>
           </ul>
         </div>

@@ -3,22 +3,22 @@ import { FaQuoteRight } from "react-icons/fa";
 
 const testimonials = [
   {
-    name: "LESLIE ALEXANDER",
-    company: "FERRARI",
-    text: "Aliquam porta nisl dolor, molestie pellentesque elit molestie in. Morbi metus neque, elementum ullam.",
+    name: "RIYA PATEL",
+    // company: "FERRARI",
+    text: "We've been sourcing our spices from Ksonal International for years now, and their quality is unbeatable. Their prompt service ensures we never run out of stock, and their competitive prices keep our costs down. Highly recommend!.",
     img: "/images/Ellipse4.png",
   },
   {
-    name: "ANNETTE BLACK",
-    company: "LOUIS VUITTON",
-    text: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur ma.",
+    name: "SUNIIL MEHTA",
+    // company: "LOUIS VUITTON",
+    text: "Ksonal International has been a reliable partner for all our lentil and bean needs. Their wide variety ensures we can cater to all our customers’ requirements. They’re always helpful and provide excellent customer service.",
     img: "/images/Ellipse4.png",
     featured: true,
   },
   {
-    name: "RALPH EDWARDS",
-    company: "MITSUBISHI",
-    text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    name: "DRISHTI SHAH",
+    // company: "MITSUBISHI",
+    text: "Ksonal International flours and powders are perfect for our baking needs. They’re consistent in quality and freshness, which is crucial for our recipes. We’re happy to have found such a dependable supplier.",
     img: "/images/Ellipse4.png",
   },
 ];
