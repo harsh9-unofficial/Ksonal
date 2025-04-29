@@ -2,8 +2,66 @@ import { ArrowRight } from "lucide-react";
 import { FaArrowRight } from "react-icons/fa";
 import { useState, useRef } from "react";
 import { motion } from "framer-motion"; // 👈 Framer Motion import
+import { USER_BASE_URL } from "../config";
 
 export default function FertilizerProduct({ title, longDescription, image }) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { name, email, phone, country, message } = e.target.elements;
+
+    const formData = {
+      name: name.value.trim(),
+      email: email.value.trim(),
+      phone: phone.value.trim(),
+      country: country.value,
+      message: message.value.trim(),
+    };
+
+    // === Basic Validation ===
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.phone ||
+      !formData.country ||
+      !formData.message
+    ) {
+      alert("Please fill in all the fields.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    if (formData.phone.length < 10) {
+      alert("Please enter a valid phone number.");
+      return;
+    }
+
+    try {
+      const res = await fetch(`${USER_BASE_URL}/inquiry`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+      if (result.success) {
+        alert("Message sent successfully!");
+        e.target.reset();
+      } else {
+        alert("Message failed to send.");
+      }
+      closeModal();
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong!");
+    }
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -12,7 +70,8 @@ export default function FertilizerProduct({ title, longDescription, image }) {
   const imageRef = useRef(null);
 
   const handleMouseMove = (e) => {
-    const { left, top, width, height } = imageRef.current.getBoundingClientRect();
+    const { left, top, width, height } =
+      imageRef.current.getBoundingClientRect();
     const x = ((e.clientX - left) / width) * 100;
     const y = ((e.clientY - top) / height) * 100;
     setTransformOrigin({ x, y });
@@ -24,7 +83,7 @@ export default function FertilizerProduct({ title, longDescription, image }) {
 
   return (
     <>
-      <motion.section 
+      <motion.section
         className="w-[100%] lg:w-[90%] mx-auto p-4 flex flex-col lg:py-8 gap-8 items-center"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -32,7 +91,6 @@ export default function FertilizerProduct({ title, longDescription, image }) {
         viewport={{ once: true }}
       >
         <div className="flex flex-col lg:flex-row justify-around items-center gap-8">
-          
           {/* Image */}
           <motion.div
             className="w-full lg:w-[45%] flex justify-center overflow-hidden relative group"
@@ -55,7 +113,7 @@ export default function FertilizerProduct({ title, longDescription, image }) {
           </motion.div>
 
           {/* Text Content */}
-          <motion.div 
+          <motion.div
             className="w-full lg:w-[55%] space-y-5"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -87,13 +145,13 @@ export default function FertilizerProduct({ title, longDescription, image }) {
 
       {/* Modal */}
       {isModalOpen && (
-        <motion.div 
+        <motion.div
           className="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center z-50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <motion.div 
+          <motion.div
             className="bg-white w-full max-w-3xl rounded-xl px-4 py-8 md:p-8 border border-gray-300 relative"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -121,23 +179,32 @@ export default function FertilizerProduct({ title, longDescription, image }) {
                 />
               </svg>
             </button>
-            <form className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full xl:mr-4 py-4">
+            <form
+              onSubmit={handleSubmit}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full xl:mr-4 py-4"
+            >
               <input
                 type="text"
                 placeholder="Name"
+                name="name"
                 className="p-4 py-5 md:text-xl border border-gray-600 placeholder:text-black text-black focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <input
                 type="email"
                 placeholder="Email"
+                name="email"
                 className="p-4 py-5 md:text-xl border border-gray-600 placeholder:text-black text-black focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <input
                 type="text"
                 placeholder="Phone Number"
+                name="phone"
                 className="p-4 py-5 md:text-xl border border-gray-600 placeholder:text-black text-black focus:outline-none focus:ring-2 focus:ring-green-500"
               />
-              <select className="p-4 py-5 md:text-xl border border-gray-600 placeholder:text-black text-black focus:outline-none focus:ring-2 focus:ring-green-500">
+              <select
+                name="country"
+                className="p-4 py-5 md:text-xl border border-gray-600 placeholder:text-black text-black focus:outline-none focus:ring-2 focus:ring-green-500"
+              >
                 <option value="">Country</option>
                 <option value="India">India</option>
                 <option value="USA">USA</option>
@@ -145,13 +212,14 @@ export default function FertilizerProduct({ title, longDescription, image }) {
               </select>
               <textarea
                 placeholder="Message"
+                name="message"
                 rows="4"
                 className="p-4 py-5 md:text-xl border border-gray-600 placeholder:text-black text-black focus:outline-none focus:ring-2 focus:ring-green-500 sm:col-span-2"
               ></textarea>
 
               <motion.button
-                type="button"
-                onClick={closeModal}
+                type="submit"
+                // onClick={closeModal}
                 whileHover={{ scale: 1.05 }}
                 className="py-5 md:text-xl bg-green-600 cursor-pointer text-white px-6 flex items-center justify-center gap-4 sm:col-span-2 shadow-[10px_10px_rgb(0,0,0)]"
               >
