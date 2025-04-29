@@ -28,9 +28,6 @@ const Navbar = () => {
           <div className="w-full mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 items-center h-16">
             <div className="flex items-center justify-center col-span-1">
               <Link to="/">
-                {/* <h1 className="text-green-600 font-bold text-lg md:text-xl lg:ml-2 cursor-pointer">
-                  KSONAL <br /> INTERNATIONAL
-                </h1> */}
                 <img src="/images/Logo.webp" alt="Logo" className="h-full"/>
               </Link>
             </div>

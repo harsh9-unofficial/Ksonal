@@ -8,7 +8,6 @@ const SingleProduct = () => {
   return (
     <>
       <HeroImg srcImg="/images/Banner1.jpg" text={title} />
-      {/* <FertilizerProduct /> */}
       <FertilizerProduct
         title={title}
         longDescription={longDescription}

@@ -76,7 +76,6 @@ const ServicesGrid = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-3 xl:gap-8 mt-8">
         {products.map((product, index) => {
-          // Choose variant based on index
           let direction =
             index % 3 === 0 ? "left" : index % 3 === 1 ? "bottom" : "right";
 

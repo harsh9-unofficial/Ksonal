@@ -2,13 +2,12 @@ import { FaUsers, FaBox, FaPen } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-// Counter Component
 const Counter = ({ target, duration = 2 }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     let start = 0;
-    const increment = target / (duration * 60); // assuming 60 fps
+    const increment = target / (duration * 60);
 
     const counter = setInterval(() => {
       start += increment;

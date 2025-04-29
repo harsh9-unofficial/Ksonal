@@ -4,20 +4,17 @@ import { FaQuoteRight } from "react-icons/fa";
 const testimonials = [
   {
     name: "RIYA PATEL",
-    // company: "FERRARI",
     text: "We've been sourcing our spices from Ksonal International for years now, and their quality is unbeatable. Their prompt service ensures we never run out of stock, and their competitive prices keep our costs down. Highly recommend!.",
     img: "/images/Ellipse4.png",
   },
   {
     name: "SUNIIL MEHTA",
-    // company: "LOUIS VUITTON",
     text: "Ksonal International has been a reliable partner for all our lentil and bean needs. Their wide variety ensures we can cater to all our customers’ requirements. They’re always helpful and provide excellent customer service.",
     img: "/images/Ellipse4.png",
     featured: true,
   },
   {
     name: "DRISHTI SHAH",
-    // company: "MITSUBISHI",
     text: "Ksonal International flours and powders are perfect for our baking needs. They’re consistent in quality and freshness, which is crucial for our recipes. We’re happy to have found such a dependable supplier.",
     img: "/images/Ellipse4.png",
   },
@@ -69,9 +66,9 @@ const TestimonialSection = () => {
               />
               <div className="flex flex-col text-left">
                 <h4 className="text-lg font-bold mt-4">{testimonial.name}</h4>
-                <p className="text-gray-500 font-medium">
+                {/* <p className="text-gray-500 font-medium">
                   {testimonial.company}
-                </p>
+                </p> */}
               </div>
             </div>
             <p className="text-gray-600 mt-3 text-left">{testimonial.text}</p>

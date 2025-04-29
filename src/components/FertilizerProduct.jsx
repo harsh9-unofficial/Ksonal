@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { FaArrowRight } from "react-icons/fa";
 import { useState, useRef } from "react";
-import { motion } from "framer-motion"; // 👈 Framer Motion import
+import { motion } from "framer-motion";
 import { USER_BASE_URL } from "../config";
 
 export default function FertilizerProduct({ title, longDescription, image }) {
@@ -18,7 +18,6 @@ export default function FertilizerProduct({ title, longDescription, image }) {
       message: message.value.trim(),
     };
 
-    // === Basic Validation ===
     if (
       !formData.name ||
       !formData.email ||
@@ -219,7 +218,6 @@ export default function FertilizerProduct({ title, longDescription, image }) {
 
               <motion.button
                 type="submit"
-                // onClick={closeModal}
                 whileHover={{ scale: 1.05 }}
                 className="py-5 md:text-xl bg-green-600 cursor-pointer text-white px-6 flex items-center justify-center gap-4 sm:col-span-2 shadow-[10px_10px_rgb(0,0,0)]"
               >

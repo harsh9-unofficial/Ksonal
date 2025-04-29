@@ -1,8 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 const ProductsDropdown = ({ onClose, mobile = false }) => {
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   const categories = [
     "Agriculture Chemicals",
@@ -14,11 +14,9 @@ const ProductsDropdown = ({ onClose, mobile = false }) => {
   ];
 
   const handleCategoryClick = (category) => {
-    // You can adjust the category-based navigation logic here
     if (category === "Agriculture Chemicals") {
-      navigate("/products"); // Redirect to /singleproduct when clicked
+      navigate("/products");
     }
-    // Add more category-based routes if needed
   };
 
   return (
@@ -32,7 +30,7 @@ const ProductsDropdown = ({ onClose, mobile = false }) => {
           <li
             key={index}
             className="border-b-2 border-gray-200 text-base flex justify-between items-center px-6 py-4 hover:bg-green-600 hover:text-white cursor-pointer"
-            onClick={() => handleCategoryClick(category)} // Attach click handler
+            onClick={() => handleCategoryClick(category)}
           >
             {category}
             <span>{">"}</span>

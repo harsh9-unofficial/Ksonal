@@ -16,7 +16,6 @@ export default function ContactUs() {
       message: message.value.trim(),
     };
 
-    // === Basic Validation ===
     if (
       !formData.name ||
       !formData.email ||
