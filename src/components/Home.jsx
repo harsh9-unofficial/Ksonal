@@ -7,7 +7,7 @@ import TestimonialSection from "./TestimonialSection";
 const Home = () => {
   return (
     <>
-      <HeroImg srcImg={"/images/Group4.png"} />
+      <HeroImg srcImg={"/images/Untitled2.jpg"} text={"Connecting Global Markets with Quality Spices and Grains"}/>
       <ServicesGrid />
       <FeaturesSection />
       {/* <QuoteForm /> */}

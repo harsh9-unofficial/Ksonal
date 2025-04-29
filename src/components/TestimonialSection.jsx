@@ -1,4 +1,4 @@
-import React from "react";
+import { motion } from "framer-motion";
 import { FaQuoteRight } from "react-icons/fa";
 
 const testimonials = [
@@ -23,6 +23,16 @@ const testimonials = [
   },
 ];
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 50, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+
 const TestimonialSection = () => {
   return (
     <section className="p-4 lg:py-16 lg:pb-20 lg:px-16 text-center">
@@ -33,15 +43,19 @@ const TestimonialSection = () => {
       </h2>
 
       {/* Testimonials Grid */}
-      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-7 xl:gap-0 w-full xl:w-[80%] mx-auto">
+      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-7 xl:gap-0 w-full xl:w-[82%] mx-auto">
         {testimonials.map((testimonial, index) => (
-          <div
+          <motion.div
             key={index}
             className={`w-full sm:w-[90%] mx-auto py-8 lg:py-10 xl:py-14 relative p-8 rounded-3xl flex flex-col text-center bg-white ${
               testimonial.featured
-                ? "border border-gray-300 shadow-[0px_0px_5px_4px_rgba(0,0,0,0.15)] "
+                ? "border border-gray-300 shadow-[0px_0px_5px_4px_rgba(0,0,0,0.15)]"
                 : "p-8"
             }`}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
           >
             <div>
               {/* Quote Icon */}
@@ -61,7 +75,7 @@ const TestimonialSection = () => {
               </div>
             </div>
             <p className="text-gray-600 mt-3 text-left">{testimonial.text}</p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

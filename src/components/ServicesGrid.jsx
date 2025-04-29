@@ -1,5 +1,4 @@
-// import { useNavigate } from "react-router-dom";
-
+import { motion } from "framer-motion";
 const ServicesGrid = () => {
   const products = [
     {
@@ -40,20 +39,35 @@ const ServicesGrid = () => {
     },
   ];
 
-  // const navigate = useNavigate();
-
-  // const handleCategoryClick = (product) => {
-  //   navigate("/singleproduct", {
-  //     state: {
-  //       title: product.title,
-  //       longDescription: product.longDescription,
-  //       image: product.image,
-  //     },
-  //   });
-  // };
+  const variants = {
+    left: {
+      hidden: { opacity: 0, x: -100 },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: { duration: 1, ease: "easeOut" },
+      },
+    },
+    right: {
+      hidden: { opacity: 0, x: 100 },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: { duration: 1, ease: "easeOut" },
+      },
+    },
+    bottom: {
+      hidden: { opacity: 0, y: 100 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 1, ease: "easeOut" },
+      },
+    },
+  };
 
   return (
-    <section className="py-12 px-3 w-[100%] lg:w-[97%] xl:w-[70%] mx-auto">
+    <section className="py-12 px-3 max-w-7xl mx-auto">
       <div className="text-center">
         <h3 className="text-green-600 font-semibold text-2xl p-4">
           OUR SERVICES
@@ -61,30 +75,34 @@ const ServicesGrid = () => {
         <h2 className="text-3xl font-bold p-4">EXPLORE OUR SERVICES</h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-3 xl:gap-8 mt-8">
-        {products.map((product, index) => (
-          <div
-            key={index}
-            className={`rounded-lg overflow-hidden shadow-xl p-4 md:p-6 lg:p-8 border border-gray-200 ${
-              product.dark ? "bg-black text-white" : "bg-white"
-            }`}
-          >
-            <img
-              src={product.image}
-              alt={product.title}
-              className="w-[100%] lg:h-68 xl:h-78 rounded-md"
-            />
-            <h3 className="mt-4 pt-2 font-bold text-xl text-green-600">
-              {product.title}
-            </h3>
-            <p className="mt-2 py-2 text-sm">{product.description}</p>
-            {/* <button
-              className={`mt-4 px-4 py-2 shadow-[10px_10px_rgba(0,0,0)] flex items-center cursor-pointer bg-green-600 text-white`}
-              onClick={() => handleCategoryClick(product)}
+        {products.map((product, index) => {
+          // Choose variant based on index
+          let direction =
+            index % 3 === 0 ? "left" : index % 3 === 1 ? "bottom" : "right";
+
+          return (
+            <motion.div
+              key={index}
+              className={`rounded-lg overflow-hidden shadow-xl p-4 md:p-6 lg:p-8 border border-gray-200 ${
+                product.dark ? "bg-black text-white" : "bg-white"
+              }`}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={variants[direction]}
             >
-              READ MORE <span className="ml-2">➜</span>
-            </button> */}
-          </div>
-        ))}
+              <img
+                src={product.image}
+                alt={product.title}
+                className="w-[100%] lg:h-68 xl:h-78 rounded-md"
+              />
+              <h3 className="mt-4 pt-2 font-bold text-xl text-green-600">
+                {product.title}
+              </h3>
+              <p className="mt-2 py-2 text-sm">{product.description}</p>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );

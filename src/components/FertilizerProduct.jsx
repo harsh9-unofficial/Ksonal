@@ -1,24 +1,66 @@
 import { ArrowRight } from "lucide-react";
 import { FaArrowRight } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { motion } from "framer-motion"; // 👈 Framer Motion import
 
 export default function FertilizerProduct({ title, longDescription, image }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const [transformOrigin, setTransformOrigin] = useState({ x: 50, y: 50 });
+  const imageRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } = imageRef.current.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    setTransformOrigin({ x, y });
+  };
+
+  const handleMouseLeave = () => {
+    setTransformOrigin({ x: 50, y: 50 });
+  };
 
   return (
     <>
-      <section className="w-[100%] lg:w-[90%] mx-auto p-4 flex flex-col lg:py-8 gap-8 items-center">
+      <motion.section 
+        className="w-[100%] lg:w-[90%] mx-auto p-4 flex flex-col lg:py-8 gap-8 items-center"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
         <div className="flex flex-col lg:flex-row justify-around items-center gap-8">
+          
           {/* Image */}
-          <div className="w-full lg:w-[45%] flex justify-center">
-            <img src={image} alt={title} className="md:w-[70%] lg:w-[100%]" />
-          </div>
+          <motion.div
+            className="w-full lg:w-[45%] flex justify-center overflow-hidden relative group"
+            onMouseMove={(e) => handleMouseMove(e)}
+            onMouseLeave={handleMouseLeave}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.img
+              src={image}
+              alt={title}
+              ref={imageRef}
+              className="md:w-[70%] lg:w-[100%] transition-transform duration-300 ease-out group-hover:scale-100"
+              style={{
+                transformOrigin: `${transformOrigin.x}% ${transformOrigin.y}%`,
+              }}
+              whileHover={{ scale: 1.05 }}
+            />
+          </motion.div>
 
           {/* Text Content */}
-          <div className="w-full lg:w-[55%] space-y-5">
+          <motion.div 
+            className="w-full lg:w-[55%] space-y-5"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
             <h2 className="text-2xl md:text-3xl font-bold text-black leading-snug capitalize">
               {title}
             </h2>
@@ -32,20 +74,31 @@ export default function FertilizerProduct({ title, longDescription, image }) {
               </p>
             </div>
 
-            <button
+            <motion.button
               onClick={openModal}
+              whileHover={{ scale: 1.05 }}
               className="mt-4 flex mx-auto md:mx-0 items-center gap-4 bg-green-600 cursor-pointer text-white px-6 py-3 text-lg"
             >
               Inquiry Now <ArrowRight size={24} />
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white w-full max-w-3xl rounded-xl px-4 py-8 md:p-8 border border-gray-300 relative">
+        <motion.div 
+          className="fixed inset-0 bg-black/60 bg-opacity-50 flex items-center justify-center z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <motion.div 
+            className="bg-white w-full max-w-3xl rounded-xl px-4 py-8 md:p-8 border border-gray-300 relative"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
             <h2 className="text-2xl font-medium">Fill this Form</h2>
             <span>We will connect with you within 24 hours</span>
             <button
@@ -96,17 +149,17 @@ export default function FertilizerProduct({ title, longDescription, image }) {
                 className="p-4 py-5 md:text-xl border border-gray-600 placeholder:text-black text-black focus:outline-none focus:ring-2 focus:ring-green-500 sm:col-span-2"
               ></textarea>
 
-              {/* Submit Button */}
-              <button
+              <motion.button
                 type="button"
                 onClick={closeModal}
+                whileHover={{ scale: 1.05 }}
                 className="py-5 md:text-xl bg-green-600 cursor-pointer text-white px-6 flex items-center justify-center gap-4 sm:col-span-2 shadow-[10px_10px_rgb(0,0,0)]"
               >
                 SUBMIT <FaArrowRight />
-              </button>
+              </motion.button>
             </form>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
     </>
   );

@@ -6,7 +6,7 @@ const HeroImg = ({ srcImg, text }) => {
         alt="Hero Image"
         className="h-full w-full object-cover"
       />
-      <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl">
+      <span className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-white text-center px-2 md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl">
         {text}
       </span>
     </main>

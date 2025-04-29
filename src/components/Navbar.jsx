@@ -23,13 +23,16 @@ const Navbar = () => {
 
   return (
     <header className="w-full relative">
-      <nav className="bg-white shadow-md relative z-50">
+      <nav className="bg-white shadow-md pb-3 relative z-50">
         <div className="px-4 py-2 sm:px-6 lg:px-8">
           <div className="w-full mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 items-center h-16">
             <div className="flex items-center justify-center col-span-1">
-              <h1 className="text-green-600 font-bold text-lg md:text-xl lg:ml-2 cursor-pointer">
-                KSONAL <br /> INTERNATIONAL
-              </h1>
+              <Link to="/">
+                {/* <h1 className="text-green-600 font-bold text-lg md:text-xl lg:ml-2 cursor-pointer">
+                  KSONAL <br /> INTERNATIONAL
+                </h1> */}
+                <img src="/images/Logo.webp" alt="Logo" className="h-full"/>
+              </Link>
             </div>
 
             <div className="hidden md:flex col-span-3 justify-center space-x-8 items-center text-lg">
@@ -103,18 +106,20 @@ const Navbar = () => {
             ABOUT US
           </Link>
           <div className="relative">
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="block w-full text-left px-4 py-2 text-black hover:bg-green-100"
-            >
-              PRODUCTS
-            </button>
-            {isDropdownOpen && (
-              <ProductsDropdown
-                onClose={() => setIsDropdownOpen(false)}
-                mobile={true}
-              />
-            )}
+            <Link to="/products">
+              <button
+                // onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="block w-full text-left px-4 py-2 text-black hover:bg-green-100"
+              >
+                PRODUCTS
+              </button>
+              {isDropdownOpen && (
+                <ProductsDropdown
+                  onClose={() => setIsDropdownOpen(false)}
+                  mobile={true}
+                />
+              )}
+            </Link>
           </div>
 
           <Link

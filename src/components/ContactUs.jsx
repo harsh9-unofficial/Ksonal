@@ -1,10 +1,16 @@
 import { FaPhoneAlt, FaEnvelope, FaArrowRight } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function ContactUs() {
   return (
-    <main className="w-full xl:w-[80%] mx-auto px-4 sm:px-6 md:px-8 py-8 lg:py-24 flex flex-col lg:flex-row items-start">
-      {/* Left Section (Contact Info) */}
-      <div className="w-full lg:w-[45%] space-y-4 sm:space-y-6">
+    <main className="w-full container mx-auto px-4 sm:px-6 md:px-8 py-8 lg:py-24 flex flex-col lg:flex-row items-start">
+      {/* Left Section */}
+      <motion.div
+        className="w-full lg:w-[48%] space-y-4 sm:space-y-6"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+      >
         <h3 className="text-green-600 font-bold text-lg md:text-xl lg:text-2xl">
           CONTACT US
         </h3>
@@ -45,10 +51,15 @@ export default function ContactUs() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Right Section (Form - Moves Below on md, Side-by-Side on lg) */}
-      <div className="w-full lg:w-[50%] bg-white md:p-4 mt-8 md:mt-4 lg:mt-0 flex flex-col justify-start">
+      {/* Right Section */}
+      <motion.div
+        className="w-full lg:w-[52%] bg-white md:p-4 mt-8 md:mt-4 lg:mt-0 flex flex-col justify-start"
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+      >
         <form className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full xl:mr-4">
           <input
             type="text"
@@ -78,14 +89,11 @@ export default function ContactUs() {
           ></textarea>
 
           {/* Submit Button */}
-          <button
-            type="submit"
-            className="py-5 text-xl md:text-2xl bg-green-600 hover:bg-green-700 text-white px-6 flex items-center justify-center gap-4 sm:col-span-2 shadow-[10px_10px_rgb(0,0,0)]"
-          >
+          <button className="py-5 text-xl md:text-2xl bg-green-600 hover:bg-green-700 cursor-pointer text-white px-6 flex items-center justify-center gap-4 sm:col-span-2 shadow-[10px_10px_rgb(0,0,0)]">
             SUBMIT <FaArrowRight />
           </button>
         </form>
-      </div>
+      </motion.div>
     </main>
   );
 }

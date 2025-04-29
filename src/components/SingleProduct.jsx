@@ -7,7 +7,7 @@ const SingleProduct = () => {
   const { title, longDescription, image } = location.state || {};
   return (
     <>
-      <HeroImg srcImg="/images/Rectangle 21.png" text={title} />
+      <HeroImg srcImg="/images/Banner1.jpg" text={title} />
       {/* <FertilizerProduct /> */}
       <FertilizerProduct
         title={title}

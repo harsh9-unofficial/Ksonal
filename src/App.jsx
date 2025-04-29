@@ -9,7 +9,6 @@ import SingleProduct from "./components/SingleProduct";
 import ContactUs from "./components/ContactUs";
 import AboutUs from "./components/AboutUs";
 
-// Component to handle scroll-to-top logic
 function ScrollToTop() {
   const location = useLocation();
 
